@@ -1,36 +1,44 @@
 package Array;
 
-import java.util.ArrayList;
 
-
-// Longest Subarray with given Sum K(Positives)
+// Longest Subarray with given currSum K(Positives)
 public class LongSubArraySum {
 
     public static void main(String[] args) {
 
 
-        int[] a = {-2, 1, 1};
-        int k = 0;
+        int[] n = {-2,1,-3,4,-1,2,1,-5,4};
 
-        // Creating ArrayList
-        ArrayList<Integer> clist = new ArrayList<>();
+        System.out.println("largest subarray sum : "+maxSubArray(n));
 
-        // adding elements of array
-        // to ArrayList
-        for (int i : a)
-            clist.add(i);
 
-        int sum = 0;
-        for (int i :a) {
-            sum = sum + i;
-            if(sum == k){
-                for (int j =0;j<= clist.indexOf(i);j++){
-                    System.out.print(a[j]+" ");
+
+
+    }
+
+    private static int maxSubArray(int[] n) {
+
+        int maxSum = Integer.MIN_VALUE;
+        int start = 0,end = 0;
+        for (int i = 0; i < n.length; i++) {
+            int  currSum = 0;
+            for (int j = i; j < n.length; j++) {
+                currSum = currSum+n[j];
+                if(currSum >maxSum){
+                    maxSum = currSum;
+                    start = i;
+                    end = j;
+
                 }
-                break;
+
+
             }
 
+        }
+        for (int i = start; i <= end; i++) {
+            System.out.print(n[i]+ " ");
 
         }
+        return maxSum;
     }
 }
